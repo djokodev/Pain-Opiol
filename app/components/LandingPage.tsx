@@ -480,13 +480,6 @@ export function Footer() {
           <p className="mt-3 text-sm font-semibold text-stone-700">
             Livraison de pain Saker à domicile.
           </p>
-          <p className="mt-1 text-sm text-stone-500">
-            Logpom — Douala, Cameroun
-          </p>
-          <p className="mt-3 max-w-md text-xs leading-5 text-stone-500">
-            Pain Opiol est un service indépendant de livraison et n’est pas
-            affilié à la boulangerie Saker.
-          </p>
         </div>
         <div>
           <nav
