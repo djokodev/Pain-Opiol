@@ -207,7 +207,7 @@ export function ProblemSection() {
   return (
     <section className="border-y border-orange-100 bg-orange-50/60 py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[1fr_.85fr] lg:items-center lg:gap-16">
+        <div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-12">
           <div>
             <p className="section-kicker">Pourquoi Pain Opiol ?</p>
             <h2 className="section-title mt-3">
@@ -218,7 +218,7 @@ export function ProblemSection() {
               minutes ou plus dans une file simplement pour acheter du pain.
             </p>
           </div>
-          <div className="grid w-full gap-4 lg:max-w-lg">
+          <div className="grid w-full gap-4">
             {points.map((point) => (
               <div
                 key={point}
@@ -230,7 +230,7 @@ export function ProblemSection() {
                 >
                   ✓
                 </span>
-                <p className="font-extrabold leading-6 text-stone-900">
+                <p className="font-extrabold leading-6 text-stone-900 xl:whitespace-nowrap">
                   {point}
                 </p>
               </div>
