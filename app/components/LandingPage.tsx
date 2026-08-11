@@ -207,7 +207,7 @@ export function ProblemSection() {
   return (
     <section className="border-y border-orange-100 bg-orange-50/60 py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+        <div className="grid gap-10 lg:grid-cols-[1fr_.85fr] lg:items-center lg:gap-16">
           <div>
             <p className="section-kicker">Pourquoi Pain Opiol ?</p>
             <h2 className="section-title mt-3">
@@ -218,14 +218,22 @@ export function ProblemSection() {
               minutes ou plus dans une file simplement pour acheter du pain.
             </p>
           </div>
-          <div className="w-full max-w-xl divide-y divide-orange-200 border-y border-orange-200">
+          <div className="grid w-full gap-4 lg:max-w-lg">
             {points.map((point) => (
-              <p
+              <div
                 key={point}
-                className="py-5 font-extrabold leading-6 text-stone-900"
+                className="card-hover flex items-center gap-4 rounded-3xl border border-orange-100 bg-white p-5 shadow-[0_12px_35px_rgba(120,53,15,0.06)] sm:p-6"
               >
-                {point}
-              </p>
+                <span
+                  aria-hidden="true"
+                  className="grid size-10 shrink-0 place-items-center rounded-full bg-orange-100 font-black text-orange-700"
+                >
+                  ✓
+                </span>
+                <p className="font-extrabold leading-6 text-stone-900">
+                  {point}
+                </p>
+              </div>
             ))}
           </div>
         </div>
