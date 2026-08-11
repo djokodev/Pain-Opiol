@@ -29,14 +29,8 @@ export function WhatsAppButton({
       target="_blank"
       rel="noreferrer"
       aria-label={ariaLabel}
-      className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 py-3 text-center text-sm font-extrabold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-600 active:scale-[0.98] ${variants[variant]} ${className}`}
+      className={`inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center text-sm font-extrabold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-600 active:scale-[0.98] ${variants[variant]} ${className}`}
     >
-      <span
-        aria-hidden="true"
-        className="grid size-6 place-items-center rounded-full bg-emerald-500 text-[12px] text-white"
-      >
-        ☎
-      </span>
       {children}
     </a>
   );

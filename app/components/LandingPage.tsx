@@ -80,11 +80,11 @@ function Logo({ compact = false }: { compact?: boolean }) {
     >
       <Image
         src="/pain-opiol-logo.jpg"
-        width={compact ? 132 : 200}
-        height={compact ? 52 : 78}
+        width={compact ? 176 : 200}
+        height={compact ? 80 : 78}
         priority={compact}
         alt="Pain Opiol, livraison de pain Saker à domicile"
-        className={compact ? "h-12 w-auto" : "h-20 w-auto"}
+        className={compact ? "h-16 w-auto lg:h-20" : "h-20 w-auto"}
       />
     </a>
   );
@@ -93,7 +93,7 @@ function Logo({ compact = false }: { compact?: boolean }) {
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-orange-100/80 bg-[#fffdf8]/95 backdrop-blur-md">
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-24 lg:px-8">
         <Logo compact />
 
         <nav
@@ -158,32 +158,30 @@ export function HeroSection() {
     <section id="accueil" className="relative overflow-hidden bg-[#fffdf8]">
       <div
         aria-hidden="true"
-        className="hero-glow absolute -right-48 -top-48 size-[520px] rounded-full bg-orange-100/70 blur-3xl"
+        className="absolute -right-40 -top-40 size-[520px] rounded-full bg-orange-100/70 blur-3xl"
       />
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.1fr_.9fr] lg:gap-16 lg:px-8 lg:py-24">
-        <div className="relative z-10">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-3 py-2 text-xs font-extrabold uppercase tracking-[0.13em] text-orange-800 sm:text-sm">
-            <span className="size-2 rounded-full bg-emerald-500" />
-            Livraison de pain à Logpom
-          </div>
-          <h1 className="max-w-3xl text-[2.55rem] font-black leading-[1.04] tracking-[-0.045em] text-stone-950 sm:text-6xl lg:text-[4.5rem]">
+      <div
+        aria-hidden="true"
+        className="absolute -bottom-56 -left-44 size-[480px] rounded-full bg-amber-100/60 blur-3xl"
+      />
+      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-5rem)] max-w-7xl items-center justify-center px-4 py-16 sm:min-h-[680px] sm:px-6 sm:py-20 lg:min-h-[720px] lg:px-8 lg:py-24">
+        <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
+          <span
+            aria-hidden="true"
+            className="mb-7 h-1.5 w-16 rounded-full bg-orange-600 sm:w-20"
+          />
+          <h1 className="text-[2.7rem] font-black leading-[1.03] tracking-[-0.05em] text-stone-950 sm:text-6xl lg:text-[5.25rem]">
             Votre pain Saker livré directement{" "}
             <span className="text-orange-600">chez vous.</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-stone-600 sm:text-lg sm:leading-8">
+          <p className="mt-7 max-w-2xl text-base leading-7 text-stone-600 sm:text-lg sm:leading-8">
             Plus besoin de vous déplacer ni de faire la file. Commandez votre
             pain dans la journée et Pain Opiol vous livre à domicile le soir.
           </p>
-          <p className="mt-3 flex items-center gap-2 text-sm font-bold text-stone-800">
-            <span aria-hidden="true" className="text-orange-600">
-              ⌂
-            </span>
-            Un service pensé pour les foyers de Logpom.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-9 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
             <WhatsAppButton
               href={siteConfig.orderUrl}
-              className="w-full sm:w-auto sm:px-7 sm:py-4"
+              className="w-full sm:w-auto sm:px-8 sm:py-4"
             >
               Commander sur WhatsApp
             </WhatsAppButton>
@@ -194,73 +192,11 @@ export function HeroSection() {
               Voir comment ça marche ↓
             </a>
           </div>
-          <p className="mt-4 text-sm font-semibold text-stone-500">
+          <p className="mt-5 text-sm font-semibold text-stone-500">
             À partir de{" "}
             <strong className="text-stone-800">150 F le pain + 100 F</strong> de
             service par commande.
           </p>
-        </div>
-
-        <div className="relative mx-auto w-full max-w-[500px]">
-          <div className="relative overflow-hidden rounded-[2rem] border border-orange-100 bg-white p-5 shadow-[0_30px_80px_rgba(120,53,15,0.13)] sm:p-8">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-orange-700">
-                  Ce soir chez vous
-                </p>
-                <p className="mt-2 text-2xl font-black text-stone-950">
-                  Du pain frais. Zéro détour.
-                </p>
-              </div>
-              <span className="rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-extrabold text-emerald-700">
-                Logpom
-              </span>
-            </div>
-            <div className="mt-5 grid grid-cols-[120px_1fr] items-center gap-4 sm:grid-cols-[160px_1fr]">
-              <div className="rounded-3xl bg-orange-50 p-2">
-                <Image
-                  src="/pain-opiol-logo.jpg"
-                  alt="Logo Pain Opiol avec des pains et une maison"
-                  width={320}
-                  height={320}
-                  priority
-                  className="aspect-square w-full rounded-2xl object-cover"
-                />
-              </div>
-              <dl className="space-y-3 text-sm">
-                <div className="flex justify-between gap-3 border-b border-stone-100 pb-3">
-                  <dt className="font-semibold text-stone-600">
-                    3 pains Saker
-                  </dt>
-                  <dd className="font-extrabold text-stone-900">450 F</dd>
-                </div>
-                <div className="flex justify-between gap-3 border-b border-stone-100 pb-3">
-                  <dt className="font-semibold text-stone-600">Service</dt>
-                  <dd className="font-extrabold text-stone-900">100 F</dd>
-                </div>
-                <div className="flex justify-between gap-3 pt-1 text-base">
-                  <dt className="font-black text-stone-900">Total</dt>
-                  <dd className="font-black text-orange-700">550 FCFA</dd>
-                </div>
-              </dl>
-            </div>
-            <div className="mt-6 flex items-center gap-3 rounded-2xl bg-stone-900 p-4 text-white">
-              <span
-                aria-hidden="true"
-                className="grid size-10 shrink-0 place-items-center rounded-full bg-orange-500 text-xl"
-              >
-                ✓
-              </span>
-              <div>
-                <p className="text-sm font-extrabold">
-                  Paiement à la livraison
-                </p>
-                <p className="text-xs text-stone-300">
-                  Simple, directement à votre porte.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
