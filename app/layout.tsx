@@ -8,7 +8,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pain-opiol.example"),
+  metadataBase: new URL("https://pain-opiol-logpom.djokodev.chatgpt.site"),
   title: "Pain Opiol | Livraison de pain Saker à domicile à Logpom",
   description:
     "Commandez votre pain Saker et faites-vous livrer directement à domicile à Logpom. Pain Opiol vous évite le déplacement et les longues files d’attente.",
