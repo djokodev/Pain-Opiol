@@ -406,14 +406,14 @@ export function CTASection() {
     <section className="px-4 py-8 sm:px-6 sm:py-14 lg:px-8">
       <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-orange-600 px-6 py-12 text-center text-white sm:px-10 sm:py-16">
         <p className="text-sm font-black uppercase tracking-[0.16em] text-orange-100">
-          Votre pain, sans la file.
+          Votre pain, sans stresse
         </p>
-        <h2 className="mx-auto mt-4 max-w-3xl text-3xl font-black tracking-tight sm:text-5xl">
+        <h2 className="mx-auto mt-4 text-3xl font-black tracking-tight sm:text-5xl lg:whitespace-nowrap">
           Et si ce soir, vous ne faisiez pas la file ?
         </h2>
-        <p className="mx-auto mt-5 max-w-xl leading-7 text-orange-50">
+        <p className="mx-auto mt-5 max-w-3xl leading-7 text-orange-50 lg:whitespace-nowrap">
           Envoyez simplement votre commande à Pain Opiol. Nous nous occupons du
-          pain.
+          reste.
         </p>
         <WhatsAppButton
           href={siteConfig.orderUrl}
