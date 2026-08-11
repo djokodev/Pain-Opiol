@@ -219,19 +219,14 @@ export function ProblemSection() {
               minutes ou plus dans une file simplement pour acheter du pain.
             </p>
           </div>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {points.map((point, index) => (
-              <div
+          <div className="divide-y divide-orange-200 border-y border-orange-200 sm:grid sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            {points.map((point) => (
+              <p
                 key={point}
-                className="card-hover rounded-3xl border border-orange-100 bg-white p-5 shadow-sm"
+                className="px-4 py-5 text-center font-extrabold leading-6 text-stone-900"
               >
-                <span className="grid size-10 place-items-center rounded-full bg-orange-100 text-sm font-black text-orange-800">
-                  {index + 1}
-                </span>
-                <p className="mt-5 font-extrabold leading-6 text-stone-900">
-                  {point}
-                </p>
-              </div>
+                {point}
+              </p>
             ))}
           </div>
         </div>
