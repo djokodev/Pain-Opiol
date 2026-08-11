@@ -166,10 +166,6 @@ export function HeroSection() {
       />
       <div className="relative z-10 mx-auto flex min-h-[calc(100svh-5rem)] max-w-7xl items-center justify-center px-4 py-16 sm:min-h-[680px] sm:px-6 sm:py-20 lg:min-h-[720px] lg:px-8 lg:py-24">
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
-          <span
-            aria-hidden="true"
-            className="mb-7 h-1.5 w-16 rounded-full bg-orange-600 sm:w-20"
-          />
           <h1 className="text-[2.7rem] font-black leading-[1.03] tracking-[-0.05em] text-stone-950 sm:text-6xl lg:text-[5.25rem]">
             Votre pain Saker livré directement{" "}
             <span className="text-orange-600">chez vous.</span>
