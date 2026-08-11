@@ -226,9 +226,9 @@ export function ProblemSection() {
               >
                 <span
                   aria-hidden="true"
-                  className="grid size-10 shrink-0 place-items-center rounded-full bg-orange-100 font-black text-orange-700"
+                  className="grid size-10 shrink-0 place-items-center rounded-full bg-red-50 text-xl font-black text-red-600"
                 >
-                  ✓
+                  ✕
                 </span>
                 <p className="font-extrabold leading-6 text-stone-900 xl:whitespace-nowrap">
                   {point}
