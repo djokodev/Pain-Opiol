@@ -372,7 +372,7 @@ export function CoverageSection() {
               <p className="mt-4 leading-7 text-stone-600">
                 Avec le temps, nos tournées s’étendront progressivement à
                 d’autres quartiers de Douala. Même pour une commande importante,
-                nous ne pouvons pas encore livrer partout dans la ville — merci
+                nous ne pouvons pas encore livrer partout dans la ville. Merci
                 pour votre compréhension.
               </p>
             </div>
