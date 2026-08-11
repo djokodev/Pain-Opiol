@@ -53,6 +53,10 @@ test("centralizes the editable WhatsApp placeholder", async () => {
   ]);
 
   assert.match(config, /PAIN_OPIOL_WHATSAPP = "237XXXXXXXXX"/);
+  assert.match(
+    config,
+    /const orderMessage = `Bonjour Pain Opiol\nJe souhaite commander du pain Saker`/,
+  );
   assert.doesNotMatch(landing, /237\d{6,}/);
   assert.match(landing, /siteConfig\.orderUrl/);
   assert.match(landing, /siteConfig\.coverageUrl/);

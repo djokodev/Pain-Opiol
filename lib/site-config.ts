@@ -1,11 +1,7 @@
 export const PAIN_OPIOL_WHATSAPP = "237XXXXXXXXX";
 
-const orderMessage = `Bonjour Pain Opiol 👋
-Je souhaite commander du pain.
-
-Nombre de pains :
-Quartier / localisation :
-Repère :`;
+const orderMessage = `Bonjour Pain Opiol
+Je souhaite commander du pain Saker`;
 
 const coverageMessage = `Bonjour Pain Opiol 👋
 Je souhaite savoir si vous livrez chez moi.
