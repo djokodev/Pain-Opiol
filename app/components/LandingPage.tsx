@@ -289,7 +289,7 @@ export function PricingSection() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-center lg:px-8">
         <div>
           <p className="section-kicker text-orange-400">Tarif clair</p>
-          <h2 className="section-title mt-3 text-white">
+          <h2 className="section-title mt-3 !text-white">
             Simple. Pas de surprise.
           </h2>
           <p className="mt-5 max-w-lg leading-7 text-stone-300">
