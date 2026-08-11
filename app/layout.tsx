@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pain Opiol | Votre pain Saker livré à Logpom",
     description:
-      "Commandez dans la journée, recevez votre pain à domicile le soir. 150 F le pain + 100 F par commande.",
+      "Commandez avant 18 h, recevez votre pain à domicile entre 18 h et 21 h. 150 F le pain + 100 F par commande.",
     locale: "fr_CM",
     type: "website",
     images: [

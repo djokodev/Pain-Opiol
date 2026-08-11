@@ -13,17 +13,17 @@ const steps = [
   {
     number: "01",
     title: "Passez votre commande",
-    text: "Envoyez-nous dans la journée le nombre de pains souhaité.",
+    text: "Envoyez-nous votre commande avant 18 h avec le nombre de pains souhaité.",
   },
   {
     number: "02",
     title: "Nous préparons la livraison",
-    text: "Pain Opiol récupère votre commande auprès de Saker.",
+    text: "Nous regroupons les commandes et récupérons vos pains auprès de Saker.",
   },
   {
     number: "03",
     title: "Recevez votre pain",
-    text: "Nous vous livrons directement chez vous le soir.",
+    text: "Nous vous livrons directement chez vous entre 18 h et 21 h.",
   },
 ];
 
@@ -51,11 +51,11 @@ const faqs = [
   ["Combien coûte un pain ?", "Un pain Saker est vendu à 150 FCFA."],
   [
     "Quand dois-je commander ?",
-    "La commande doit être passée dans la journée afin de préparer la tournée du soir.",
+    "La commande doit être passée avant 18 h afin de préparer la tournée du soir.",
   ],
   [
     "À quelle heure livrez-vous ?",
-    "Les livraisons sont effectuées le soir. L’horaire précis peut varier selon la tournée.",
+    "Les livraisons sont effectuées le soir, entre 18 h et 21 h. L’horaire précis peut varier selon la tournée.",
   ],
   [
     "Dans quels quartiers livrez-vous ?",
@@ -172,7 +172,8 @@ export function HeroSection() {
           </h1>
           <p className="mt-7 max-w-2xl text-base leading-7 text-stone-600 sm:text-lg sm:leading-8">
             Plus besoin de vous déplacer ni de faire la file. Commandez votre
-            pain dans la journée et Pain Opiol vous livre à domicile le soir.
+            pain avant 18 h et Pain Opiol vous livre à domicile entre 18 h et 21
+            h.
           </p>
           <div className="mt-9 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
             <WhatsAppButton
@@ -261,10 +262,7 @@ export function HowItWorksSection() {
               <span className="absolute right-5 top-3 text-6xl font-black tracking-tighter text-orange-100">
                 {step.number}
               </span>
-              <span className="relative grid size-12 place-items-center rounded-2xl bg-orange-600 font-black text-white">
-                {step.number}
-              </span>
-              <h3 className="relative mt-8 text-xl font-black text-stone-950">
+              <h3 className="relative mt-10 pr-14 text-xl font-black text-stone-950">
                 {step.title}
               </h3>
               <p className="relative mt-3 leading-7 text-stone-600">
@@ -274,7 +272,7 @@ export function HowItWorksSection() {
           ))}
         </div>
         <p className="mt-6 text-center text-sm font-semibold text-stone-500">
-          Commandez dans la journée · Nous livrons le soir · Vous payez à la
+          Commandez avant 18 h · Livraison entre 18 h et 21 h · Paiement à la
           livraison
         </p>
       </div>
