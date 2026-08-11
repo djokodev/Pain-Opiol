@@ -379,10 +379,7 @@ export function SocialProofSection() {
   return (
     <section className="py-20 sm:py-24">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 rounded-[2rem] border border-orange-100 bg-white p-6 shadow-[0_24px_70px_rgba(120,53,15,0.08)] sm:p-10 md:grid-cols-[auto_1fr] md:items-center">
-          <div className="grid size-20 place-items-center rounded-3xl bg-orange-600 text-3xl text-white">
-            ⌂
-          </div>
+        <div className="rounded-[2rem] border border-orange-100 bg-white p-6 shadow-[0_24px_70px_rgba(120,53,15,0.08)] sm:p-10">
           <div>
             <p className="section-kicker">Testé sur le terrain</p>
             <h2 className="mt-3 text-2xl font-black tracking-tight text-stone-950 sm:text-3xl">
