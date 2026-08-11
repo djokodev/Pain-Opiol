@@ -201,9 +201,8 @@ export function HeroSection() {
 
 export function ProblemSection() {
   const points = [
-    "Plus de détour par la boulangerie",
-    "Plus de longue attente",
-    "Votre pain arrive à la maison",
+    "Plus de détour par la boulangerie pour du pain Saker",
+    "Plus de longue attente inutile",
   ];
   return (
     <section className="border-y border-orange-100 bg-orange-50/60 py-16 sm:py-20">
@@ -219,11 +218,11 @@ export function ProblemSection() {
               minutes ou plus dans une file simplement pour acheter du pain.
             </p>
           </div>
-          <div className="divide-y divide-orange-200 border-y border-orange-200 sm:grid sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          <div className="w-full max-w-xl divide-y divide-orange-200 border-y border-orange-200">
             {points.map((point) => (
               <p
                 key={point}
-                className="px-4 py-5 text-center font-extrabold leading-6 text-stone-900"
+                className="py-5 font-extrabold leading-6 text-stone-900"
               >
                 {point}
               </p>
