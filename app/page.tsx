@@ -1,5 +1,4 @@
 import {
-  BenefitsSection,
   CoverageSection,
   CTASection,
   FAQSection,
@@ -23,7 +22,6 @@ export default function Home() {
         <HowItWorksSection />
         <PricingSection />
         <CoverageSection />
-        <BenefitsSection />
         <SocialProofSection />
         <CTASection />
         <FAQSection />

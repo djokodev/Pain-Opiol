@@ -27,21 +27,6 @@ const steps = [
   },
 ];
 
-const benefits = [
-  ["Du temps gagné", "Évitez le déplacement et la file d’attente.", "⌚"],
-  ["Une livraison simple", "Vous commandez, nous nous occupons du reste.", "✓"],
-  [
-    "Pensé pour les familles",
-    "Pain Opiol dessert directement les foyers.",
-    "⌂",
-  ],
-  [
-    "Un service local",
-    "Nous commençons à Logpom pour mieux nous organiser.",
-    "◎",
-  ],
-];
-
 const faqs = [
   ["Quel pain livrez-vous ?", "Nous livrons actuellement du pain Saker."],
   [
@@ -384,40 +369,6 @@ export function CoverageSection() {
               Vérifier si ma maison est desservie
             </WhatsAppButton>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function BenefitsSection() {
-  return (
-    <section className="bg-[#fffdf8] py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="section-kicker">Pourquoi nous choisir</p>
-          <h2 className="section-title mt-3">
-            Le service du quartier, pensé pour la maison.
-          </h2>
-        </div>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {benefits.map(([title, text, icon]) => (
-            <article
-              key={title}
-              className="card-hover rounded-3xl border border-orange-100 bg-white p-6"
-            >
-              <span
-                aria-hidden="true"
-                className="grid size-11 place-items-center rounded-2xl bg-orange-100 text-xl font-black text-orange-700"
-              >
-                {icon}
-              </span>
-              <h3 className="mt-6 text-lg font-black text-stone-950">
-                {title}
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-stone-600">{text}</p>
-            </article>
-          ))}
         </div>
       </div>
     </section>
