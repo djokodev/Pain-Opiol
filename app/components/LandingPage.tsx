@@ -362,19 +362,18 @@ export function CoverageSection() {
           />
           <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-2 text-xs font-black uppercase tracking-wider text-emerald-800">
-                <span className="size-2 rounded-full bg-emerald-500" /> Logpom —
-                disponible
-              </span>
-              <h2 className="section-title mt-5">
-                Nous commençons par Logpom.
-              </h2>
+              <h2 className="section-title">Nous commençons par Logpom.</h2>
               <p className="mt-5 leading-7 text-stone-600">
-                Pain Opiol démarre à Logpom afin de garantir des livraisons
-                simples, rapides et bien organisées.
+                Pour le moment, Pain Opiol livre uniquement les foyers de Logpom
+                et des environs proches. Nous venons de démarrer et avançons
+                quartier par quartier afin de vous offrir un service simple,
+                fiable et bien organisé.
               </p>
-              <p className="mt-3 text-sm font-bold text-stone-800">
-                Zone de départ : Logpom et environs proches selon disponibilité.
+              <p className="mt-4 leading-7 text-stone-600">
+                Avec le temps, nos tournées s’étendront progressivement à
+                d’autres quartiers de Douala. Même pour une commande importante,
+                nous ne pouvons pas encore livrer partout dans la ville — merci
+                pour votre compréhension.
               </p>
             </div>
             <WhatsAppButton
