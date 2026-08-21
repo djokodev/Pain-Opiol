@@ -140,22 +140,29 @@ export function Navbar() {
 
 export function HeroSection() {
   return (
-    <section id="accueil" className="relative overflow-hidden bg-[#fffdf8]">
-      <div
-        aria-hidden="true"
-        className="absolute -right-40 -top-40 size-[520px] rounded-full bg-orange-100/70 blur-3xl"
+    <section
+      id="accueil"
+      className="relative isolate overflow-hidden bg-stone-950"
+    >
+      <Image
+        src="/hero-family-breakfast.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="z-0 object-cover object-center"
       />
       <div
         aria-hidden="true"
-        className="absolute -bottom-56 -left-44 size-[480px] rounded-full bg-amber-100/60 blur-3xl"
+        className="absolute inset-0 z-10 bg-gradient-to-b from-stone-950/80 via-orange-950/70 to-stone-950/80"
       />
-      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-5rem)] max-w-7xl items-center justify-center px-4 py-16 sm:min-h-[680px] sm:px-6 sm:py-20 lg:min-h-[720px] lg:px-8 lg:py-24">
+      <div className="relative z-20 mx-auto flex min-h-[calc(100svh-5rem)] max-w-7xl items-center justify-center px-4 py-16 sm:min-h-[680px] sm:px-6 sm:py-20 lg:min-h-[720px] lg:px-8 lg:py-24">
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
-          <h1 className="text-[2.7rem] font-black leading-[1.03] tracking-[-0.05em] text-stone-950 sm:text-6xl lg:text-[5.25rem]">
+          <h1 className="text-[2.7rem] font-black leading-[1.03] tracking-[-0.05em] text-white drop-shadow-[0_4px_18px_rgba(28,25,23,0.45)] sm:text-6xl lg:text-[5.25rem]">
             Votre pain Saker livré directement{" "}
-            <span className="text-orange-600">chez vous.</span>
+            <span className="text-orange-300">chez vous.</span>
           </h1>
-          <p className="mt-7 max-w-2xl text-base leading-7 text-stone-600 sm:text-lg sm:leading-8">
+          <p className="mt-7 max-w-2xl text-base leading-7 text-orange-50 sm:text-lg sm:leading-8">
             Plus besoin de vous déplacer ni de faire la file. Commandez votre
             pain avant 18 h et Pain Opiol vous livre à domicile entre 18 h et 21
             h.
@@ -169,14 +176,14 @@ export function HeroSection() {
             </WhatsAppButton>
             <a
               href="#comment-ca-marche"
-              className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-stone-300 bg-white px-6 py-3 text-sm font-extrabold text-stone-800 transition hover:border-orange-300 hover:text-orange-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-600 sm:w-auto"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/70 bg-white/95 px-6 py-3 text-sm font-extrabold text-stone-800 transition hover:border-orange-300 hover:text-orange-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-300 sm:w-auto"
             >
               Voir comment ça marche ↓
             </a>
           </div>
-          <p className="mt-5 text-sm font-semibold text-stone-500">
+          <p className="mt-5 text-sm font-semibold text-orange-100">
             À partir de{" "}
-            <strong className="text-stone-800">150 F le pain + 100 F</strong> de
+            <strong className="text-white">150 F le pain + 100 F</strong> de
             service par commande.
           </p>
         </div>
