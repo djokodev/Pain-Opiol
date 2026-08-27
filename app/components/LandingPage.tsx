@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 import { WhatsAppButton } from "./WhatsAppButton";
+import { HeroCarousel } from "./HeroCarousel";
 
 const navigation = [
   { label: "Comment ça marche", href: "#comment-ca-marche" },
@@ -28,31 +29,37 @@ const steps = [
 ];
 
 const faqs = [
-  ["Quel pain livrez-vous ?", "Nous livrons actuellement du pain Saker."],
+  [
+    "Quel pain livrez-vous ?",
+    "Nous livrons exclusivement du pain Saker frais.",
+  ],
   [
     "Combien coûte la livraison ?",
-    "Le service Pain Opiol coûte 100 FCFA par commande.",
+    "Le service de conciergerie Pain Opiol coûte 500 FCFA par commande (livraison directe à votre domicile).",
   ],
-  ["Combien coûte un pain ?", "Un pain Saker est vendu à 150 FCFA."],
+  [
+    "Combien coûte un pain ?",
+    "Un pain Saker est vendu à son prix officiel de 150 FCFA.",
+  ],
   [
     "Quand dois-je commander ?",
-    "La commande doit être passée avant 18 h afin de préparer la tournée du soir.",
+    "Votre commande doit être passée avant 18 h pour une livraison garantie le soir même.",
   ],
   [
     "À quelle heure livrez-vous ?",
-    "Les livraisons sont effectuées le soir, entre 18 h et 21 h. L’horaire précis peut varier selon la tournée.",
+    "Les livraisons sont effectuées le soir entre 18 h et 21 h. Vous recevez une confirmation dès que votre livreur est en route.",
   ],
   [
     "Dans quels quartiers livrez-vous ?",
-    "Pain Opiol démarre à Logpom. Les zones voisines seront ajoutées progressivement.",
+    "Nous livrons dans les résidences et quartiers de Douala. Il suffit que 5 foyers voisins ou d'une même résidence commandent chez nous pour qu'une tournée dédiée soit organisée.",
   ],
   [
     "Puis-je commander pour une boutique ?",
-    "Non. Pain Opiol est actuellement réservé aux foyers.",
+    "Non. Pain Opiol est un service personnalisé réservé exclusivement aux foyers et particuliers.",
   ],
   [
     "Comment payer ?",
-    "Le paiement se fait à la livraison dans la version actuelle du service.",
+    "Le paiement se fait directement à la livraison, en espèces ou via Mobile Money.",
   ],
 ];
 
@@ -68,6 +75,7 @@ function Logo({ compact = false }: { compact?: boolean }) {
         width={compact ? 176 : 200}
         height={compact ? 80 : 78}
         priority={compact}
+        unoptimized
         alt="Pain Opiol, livraison de pain Saker à domicile"
         className={compact ? "h-16 w-auto lg:h-20" : "h-20 w-auto"}
       />
@@ -144,14 +152,7 @@ export function HeroSection() {
       id="accueil"
       className="relative isolate overflow-hidden bg-stone-950"
     >
-      <Image
-        src="/hero-family-breakfast.jpg"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="z-0 object-cover object-center"
-      />
+      <HeroCarousel />
       <div
         aria-hidden="true"
         className="absolute inset-0 z-10 bg-gradient-to-b from-stone-950/80 via-orange-950/70 to-stone-950/80"
@@ -159,13 +160,13 @@ export function HeroSection() {
       <div className="relative z-20 mx-auto flex min-h-[calc(100svh-5rem)] max-w-7xl items-center justify-center px-4 py-16 sm:min-h-[680px] sm:px-6 sm:py-20 lg:min-h-[720px] lg:px-8 lg:py-24">
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
           <h1 className="text-[2.7rem] font-black leading-[1.03] tracking-[-0.05em] text-white drop-shadow-[0_4px_18px_rgba(28,25,23,0.45)] sm:text-6xl lg:text-[5.25rem]">
-            Votre pain Saker livré directement{" "}
-            <span className="text-orange-300">chez vous.</span>
+            Votre <span className="text-orange-300">pain Saker</span>, livré
+            chez vous. <span className="text-orange-300">Votre temps</span>,
+            préservé.
           </h1>
           <p className="mt-7 max-w-2xl text-base leading-7 text-orange-50 sm:text-lg sm:leading-8">
-            Plus besoin de vous déplacer ni de faire la file. Commandez votre
-            pain avant 18 h et Pain Opiol vous livre à domicile entre 18 h et 21
-            h.
+            Vous avez mieux à faire que la file d&apos;attente. Commandez votre
+            pain avant 18 h et Pain Opiol s&apos;occupe du reste.
           </p>
           <div className="mt-9 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
             <WhatsAppButton
@@ -182,9 +183,8 @@ export function HeroSection() {
             </a>
           </div>
           <p className="mt-5 text-sm font-semibold text-orange-100">
-            À partir de{" "}
-            <strong className="text-white">150 F le pain + 100 F</strong> de
-            service par commande.
+            Pain Saker à <strong className="text-white">150 F + 500 F</strong>{" "}
+            de service par commande.
           </p>
         </div>
       </div>
@@ -194,8 +194,8 @@ export function HeroSection() {
 
 export function ProblemSection() {
   const points = [
-    "Plus de détour par la boulangerie pour du pain Saker",
-    "Plus de longue attente inutile",
+    "Plus de détour par la boulangerie après le travail",
+    "Plus d'attente inutile quand votre soirée vous attend",
   ];
   return (
     <section className="border-y border-orange-100 bg-orange-50/60 py-16 sm:py-20">
@@ -204,11 +204,11 @@ export function ProblemSection() {
           <div>
             <p className="section-kicker">Pourquoi Pain Opiol ?</p>
             <h2 className="section-title mt-3">
-              Le pain oui. La file d’attente, non.
+              Votre temps vaut plus qu&apos;une file d&apos;attente.
             </h2>
             <p className="mt-5 max-w-xl leading-7 text-stone-600">
-              Après une longue journée, personne n’a envie de passer encore 20
-              minutes ou plus dans une file simplement pour acheter du pain.
+              Vous gérez une famille, un travail, un quotidien chargé. Acheter
+              du pain ne devrait pas être une corvée de plus dans votre journée.
             </p>
           </div>
           <div className="grid w-full gap-4">
@@ -223,7 +223,7 @@ export function ProblemSection() {
                 >
                   ✕
                 </span>
-                <p className="font-extrabold leading-6 text-stone-900 xl:whitespace-nowrap">
+                <p className="font-extrabold leading-6 text-stone-900">
                   {point}
                 </p>
               </div>
@@ -280,13 +280,13 @@ export function PricingSection() {
     >
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-center lg:px-8">
         <div>
-          <p className="section-kicker text-orange-400">Tarif clair</p>
+          <p className="section-kicker text-orange-400">Tarif transparent</p>
           <h2 className="section-title mt-3 !text-white">
-            Simple. Pas de surprise.
+            Un prix juste pour votre tranquillité.
           </h2>
           <p className="mt-5 max-w-lg leading-7 text-stone-300">
-            Vous payez simplement votre pain et 100 F de service pour toute la
-            commande.
+            Vous payez le prix officiel de votre pain Saker et 500 F de frais de
+            service pour toute la commande, peu importe le nombre de pains.
           </p>
           <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-stone-700 px-4 py-2 text-sm font-bold text-stone-200">
             <span className="size-2 rounded-full bg-emerald-400" /> Paiement à
@@ -310,14 +310,16 @@ export function PricingSection() {
                 Service Pain Opiol
               </p>
               <p className="mt-2 text-3xl font-black text-orange-700">
-                100 <span className="text-base">FCFA</span>
+                500 <span className="text-base">FCFA</span>
               </p>
               <p className="mt-1 text-sm text-stone-500">par commande</p>
             </div>
           </div>
           <div className="mt-5 rounded-3xl bg-orange-600 p-5 text-white sm:p-6">
             <div className="flex items-center justify-between gap-3 border-b border-orange-400 pb-4">
-              <p className="font-extrabold">Exemple : 3 pains chez vous</p>
+              <p className="font-extrabold">
+                Exemple : 3 pains livrés chez vous
+              </p>
               <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-black">
                 UNE COMMANDE
               </span>
@@ -328,12 +330,12 @@ export function PricingSection() {
                 <dd className="font-bold">450 F</dd>
               </div>
               <div className="flex justify-between">
-                <dt>Service</dt>
-                <dd className="font-bold">100 F</dd>
+                <dt>Service Pain Opiol</dt>
+                <dd className="font-bold">500 F</dd>
               </div>
               <div className="flex justify-between border-t border-orange-400 pt-4 text-lg">
                 <dt className="font-black">Total</dt>
-                <dd className="font-black">550 FCFA</dd>
+                <dd className="font-black">950 FCFA</dd>
               </div>
             </dl>
           </div>
@@ -356,16 +358,16 @@ export function CoverageSection() {
             <div className="max-w-2xl">
               <h2 className="section-title">Nous commençons par Logpom.</h2>
               <p className="mt-5 leading-7 text-stone-600">
-                Pour le moment, Pain Opiol livre uniquement les foyers de Logpom
-                et des environs proches. Nous venons de démarrer et avançons
-                quartier par quartier afin de vous offrir un service simple,
-                fiable et bien organisé.
+                Pour bien démarrer et vous servir correctement, Pain Opiol livre
+                pour le moment à Logpom et dans les environs proches. Douala est
+                grande, donc nous avançons quartier par quartier afin de garder
+                des livraisons simples, rapides et bien organisées.
               </p>
               <p className="mt-4 leading-7 text-stone-600">
-                Avec le temps, nos tournées s’étendront progressivement à
-                d’autres quartiers de Douala. Même pour une commande importante,
-                nous ne pouvons pas encore livrer partout dans la ville. Merci
-                pour votre compréhension.
+                Avec le temps, nous ouvrirons progressivement d&apos;autres zones.
+                Même pour une grosse commande, nous préférons rester sérieux sur
+                notre zone actuelle plutôt que de promettre tout Douala trop
+                vite.
               </p>
             </div>
             <WhatsAppButton
@@ -373,7 +375,7 @@ export function CoverageSection() {
               variant="outline"
               className="relative w-full lg:w-auto"
             >
-              Vérifier si ma maison est desservie
+              Commander pour ma résidence
             </WhatsAppButton>
           </div>
         </div>
@@ -390,16 +392,12 @@ export function SocialProofSection() {
           <div>
             <p className="section-kicker">Testé sur le terrain</p>
             <h2 className="mt-3 text-2xl font-black tracking-tight text-stone-950 sm:text-3xl">
-              Déjà testé auprès de familles à Logpom.
+              Déjà testé et adopté auprès de nombreuses familles.
             </h2>
             <p className="mt-4 leading-7 text-stone-600">
-              Lors de nos premières prospections, plusieurs foyers ont accepté
-              le service et ont commencé à recevoir leur pain directement à
-              domicile.
-            </p>
-            <p className="mt-4 text-sm font-bold text-orange-800">
-              Premier test terrain : environ 10 foyers clients sur une vingtaine
-              de foyers approchés.
+              Plusieurs foyers font déjà confiance à Pain Opiol pour recevoir
+              leur pain Saker chaque soir directement à domicile, sans
+              contrainte et en toute sérénité.
             </p>
           </div>
         </div>

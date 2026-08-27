@@ -34,11 +34,12 @@ test("server-renders the complete Pain Opiol landing page", async () => {
     html,
     /Pain Opiol \| Livraison de pain Saker à domicile à Logpom/i,
   );
-  assert.match(html, /Votre pain Saker livré directement/);
+  assert.match(html, /Votre[^<]*<[^>]*>pain Saker/);
   assert.match(html, /150[^<]*<[^>]*>FCFA/);
-  assert.match(html, /100[^<]*<[^>]*>FCFA/);
+  assert.match(html, /500[^<]*<[^>]*>FCFA/);
   assert.match(html, /Logpom/);
-  assert.match(html, /réservé aux foyers/);
+  assert.match(html, /Nous commençons par Logpom/);
+  assert.match(html, /Images de baguettes de pain/);
   assert.match(html, /https:\/\/wa\.me\/237XXXXXXXXX\?text=/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
