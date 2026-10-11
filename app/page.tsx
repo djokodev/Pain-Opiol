@@ -9,7 +9,6 @@ import {
   Navbar,
   PricingSection,
   ProblemSection,
-  SocialProofSection,
 } from "./components/LandingPage";
 
 export default function Home() {
@@ -22,9 +21,8 @@ export default function Home() {
         <HowItWorksSection />
         <PricingSection />
         <CoverageSection />
-        <SocialProofSection />
-        <CTASection />
         <FAQSection />
+        <CTASection />
       </main>
       <Footer />
       <MobileWhatsAppBar />

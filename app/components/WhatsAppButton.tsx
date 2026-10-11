@@ -9,11 +9,10 @@ type WhatsAppButtonProps = {
 };
 
 const variants = {
-  primary:
-    "bg-orange-600 text-white shadow-[0_12px_30px_rgba(234,88,12,0.22)] hover:bg-orange-700",
-  light: "bg-white text-stone-900 hover:bg-orange-50",
+  primary: "bg-feuille text-white hover:bg-feuille-fonce",
+  light: "bg-white text-cacao hover:bg-soleil",
   outline:
-    "border border-orange-200 bg-white text-orange-700 hover:border-orange-300 hover:bg-orange-50",
+    "border-2 border-cacao bg-transparent text-cacao hover:bg-cacao hover:text-white",
 };
 
 export function WhatsAppButton({
@@ -29,7 +28,7 @@ export function WhatsAppButton({
       target="_blank"
       rel="noreferrer"
       aria-label={ariaLabel}
-      className={`inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center text-sm font-extrabold transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-600 active:scale-[0.98] ${variants[variant]} ${className}`}
+      className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 py-3 text-center text-[0.95rem] font-bold transition-colors duration-150 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-soleil active:translate-y-px ${variants[variant]} ${className}`}
     >
       {children}
     </a>

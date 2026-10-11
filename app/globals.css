@@ -1,49 +1,51 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #1c1917;
-}
+@theme {
+  --color-cacao: #3b1a0e;
+  --color-croute: #d9601a;
+  --color-feuille: #0b7a45;
+  --color-feuille-fonce: #075c33;
+  --color-soleil: #f6c437;
+  --color-mie: #fbe9cf;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: "Figtree Variable", system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Figtree Variable", system-ui,
+    sans-serif;
+
+  --spacing-18: 4.5rem;
 }
 
 html {
   scroll-behavior: smooth;
-  background: var(--background);
+  background: #ffffff;
 }
 
 body {
   min-width: 320px;
   overflow-x: hidden;
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-cacao);
+  font-family: var(--font-sans);
+  font-size: 1rem;
 }
 
 ::selection {
-  background: #fed7aa;
-  color: #7c2d12;
-}
-
-.section-kicker {
-  font-size: 0.75rem;
-  font-weight: 900;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #c2410c;
+  background: var(--color-soleil);
+  color: var(--color-cacao);
 }
 
 .section-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 900;
-  line-height: 1.06;
-  letter-spacing: -0.04em;
-  color: #1c1917;
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--color-cacao);
+  text-wrap: balance;
+}
+
+h1 {
+  text-wrap: balance;
 }
 
 .mobile-menu > summary::-webkit-details-marker,
@@ -51,19 +53,33 @@ body {
   display: none;
 }
 
-@media (hover: hover) {
-  .card-hover {
-    transition:
-      transform 180ms ease,
-      box-shadow 180ms ease,
-      border-color 180ms ease;
-  }
+/* Bords crantés du ticket de caisse */
+.ticket {
+  --notch: 9px;
+  border-radius: 6px;
+  -webkit-mask:
+    radial-gradient(circle at 50% 0, #0000 var(--notch), #000 calc(var(--notch) + 0.5px)) top / 26px 51% repeat-x,
+    radial-gradient(circle at 50% 100%, #0000 var(--notch), #000 calc(var(--notch) + 0.5px)) bottom / 26px 51% repeat-x;
+  mask:
+    radial-gradient(circle at 50% 0, #0000 var(--notch), #000 calc(var(--notch) + 0.5px)) top / 26px 51% repeat-x,
+    radial-gradient(circle at 50% 100%, #0000 var(--notch), #000 calc(var(--notch) + 0.5px)) bottom / 26px 51% repeat-x;
+}
 
-  .card-hover:hover {
-    transform: translateY(-4px);
-    border-color: #fed7aa;
-    box-shadow: 0 18px 45px rgb(120 53 15 / 0.08);
+/* Unique animation de la page : les messages WhatsApp arrivent un par un */
+@keyframes bubble-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
   }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.chat .bubble {
+  opacity: 0;
+  animation: bubble-in 380ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -71,12 +87,14 @@ body {
     scroll-behavior: auto;
   }
 
+  .chat .bubble {
+    opacity: 1;
+    animation: none;
+  }
+
   *,
   *::before,
   *::after {
-    scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
   }
 }

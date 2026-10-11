@@ -1,25 +1,24 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource-variable/figtree";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site-config";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const description =
+  "Ne perdez plus votre temps dans le rang. Commandez votre pain Saker sur WhatsApp avant 18 h, on vous le livre emballé à domicile entre 18 h et 21 h. 150 F le pain, 500 F la livraison.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pain-opiol-logpom.djokodev.chatgpt.site"),
-  title: "Pain Opiol | Livraison de pain Saker à domicile à Logpom",
-  description:
-    "Commandez votre pain Saker et faites-vous livrer directement à domicile à Logpom. Pain Opiol vous évite le déplacement et les longues files d’attente.",
+  metadataBase: new URL(SITE_URL),
+  title: "Pain Opiol | Livraison de pain Saker à domicile à Douala",
+  description,
   icons: {
     icon: "/pain-opiol-logo.jpg",
     shortcut: "/pain-opiol-logo.jpg",
   },
   openGraph: {
-    title: "Pain Opiol | Votre pain Saker livré à Logpom",
+    title: "Pain Opiol | Votre pain Saker livré, votre temps gagné",
     description:
-      "Commandez avant 18 h, recevez votre pain à domicile entre 18 h et 21 h. 150 F le pain + 500 F par commande.",
+      description,
     locale: "fr_CM",
     type: "website",
     images: [
@@ -27,15 +26,14 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Pain Opiol — votre pain Saker livré chez vous à Logpom",
+        alt: "Pain Opiol, le pain Saker livré à domicile à Douala",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pain Opiol | Votre pain Saker livré à Logpom",
-    description:
-      "Votre pain Saker à domicile à Logpom, sans déplacement ni file d’attente.",
+    title: "Pain Opiol | Votre pain Saker livré, votre temps gagné",
+    description,
     images: ["/og.png"],
   },
 };
@@ -47,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${geistSans.variable} antialiased`}>{children}</body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

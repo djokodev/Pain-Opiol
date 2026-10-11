@@ -32,33 +32,24 @@ test("server-renders the complete Pain Opiol landing page", async () => {
   assert.match(html, /<html lang="fr">/i);
   assert.match(
     html,
-    /Pain Opiol \| Livraison de pain Saker à domicile à Logpom/i,
+    /Pain Opiol \| Livraison de pain Saker à domicile à Douala/i,
   );
-  assert.match(html, /Votre[^<]*<[^>]*>pain Saker/);
-  assert.match(html, /150[^<]*<[^>]*>FCFA/);
-  assert.match(html, /500[^<]*<[^>]*>FCFA/);
-  assert.match(html, /Logpom/);
-  assert.match(html, /Nous commençons par Logpom/);
-  assert.match(html, /Images de baguettes de pain/);
-  assert.match(html, /https:\/\/wa\.me\/237XXXXXXXXX\?text=/);
+  assert.match(html, /Votre temps est .*trop précieux .*pour faire le rang\./);
+  assert.match(html, /foyers dans votre quartier \? On vient livrer/);
+  assert.match(html, /https:\/\/wa\.me\/237691257946\?text=/);
+  assert.match(html, /\+237 691 25 79 46/);
+  assert.doesNotMatch(html, /237X{3,}/);
+  assert.doesNotMatch(html, /5 foyers|nombreuses familles|stresse|Exemple de commande|déjà écrit/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 
-test("centralizes the editable WhatsApp placeholder", async () => {
-  const [config, landing] = await Promise.all([
-    readFile(new URL("../lib/site-config.ts", import.meta.url), "utf8"),
-    readFile(
-      new URL("../app/components/LandingPage.tsx", import.meta.url),
-      "utf8",
-    ),
-  ]);
-
-  assert.match(config, /PAIN_OPIOL_WHATSAPP = "237XXXXXXXXX"/);
-  assert.match(
-    config,
-    /const orderMessage = `Bonjour Pain Opiol\nJe souhaite commander du pain Saker`/,
+test("keeps the WhatsApp number and prices in one config file", async () => {
+  const config = await readFile(
+    new URL("../lib/site-config.ts", import.meta.url),
+    "utf8",
   );
-  assert.doesNotMatch(landing, /237\d{6,}/);
-  assert.match(landing, /siteConfig\.orderUrl/);
-  assert.match(landing, /siteConfig\.coverageUrl/);
+
+  assert.match(config, /PAIN_OPIOL_WHATSAPP = "237691257946"/);
+  assert.match(config, /BREAD_PRICE = 150/);
+  assert.match(config, /SERVICE_FEE = 500/);
 });

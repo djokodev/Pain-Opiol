@@ -1,83 +1,105 @@
 import Image from "next/image";
-import { siteConfig } from "@/lib/site-config";
+import {
+  BREAD_PRICE,
+  HOUSEHOLDS_PER_ZONE,
+  PAIN_OPIOL_PHONE_DISPLAY,
+  SERVICE_FEE,
+  siteConfig,
+} from "@/lib/site-config";
 import { WhatsAppButton } from "./WhatsAppButton";
-import { HeroCarousel } from "./HeroCarousel";
+import { PriceCalculator } from "./PriceCalculator";
 
 const navigation = [
   { label: "Comment ça marche", href: "#comment-ca-marche" },
   { label: "Tarif", href: "#tarif" },
-  { label: "Zone desservie", href: "#zone" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Votre quartier", href: "#quartiers" },
+  { label: "Questions", href: "#faq" },
 ];
 
-const steps = [
+const evening = [
   {
-    number: "01",
-    title: "Passez votre commande",
-    text: "Envoyez-nous votre commande avant 18 h avec le nombre de pains souhaité.",
+    time: "Avant 18 h",
+    title: "Vous commandez sur WhatsApp",
+    text: "Le nombre de pains, votre quartier et votre repère. C’est tout.",
   },
   {
-    number: "02",
-    title: "Nous préparons la livraison",
-    text: "Nous regroupons les commandes et récupérons vos pains auprès de Saker.",
+    time: "Vers 18 h",
+    title: "On achète et on emballe",
+    text: "On récupère votre pain frais chez Saker, on revient dans nos locaux et on emballe chaque commande à part, au nom de chaque client.",
   },
   {
-    number: "03",
-    title: "Recevez votre pain",
-    text: "Nous vous livrons directement chez vous entre 18 h et 21 h.",
+    time: "18 h – 21 h",
+    title: "On vous livre à domicile",
+    text: "Maison ou appartement, le livreur vous prévient quand il est en route et vous remet la commande en main propre. Vous payez à la réception.",
+  },
+];
+
+const openingSteps = [
+  {
+    title: "Inscrivez votre foyer",
+    text: "Envoyez-nous votre quartier et votre repère sur WhatsApp.",
+  },
+  {
+    title: "Invitez vos voisins",
+    text: "Résidence, immeuble, rue : partagez Pain Opiol autour de vous.",
+  },
+  {
+    title: `À ${HOUSEHOLDS_PER_ZONE} foyers, on démarre`,
+    text: "On vous prévient et la tournée passe chez vous tous les soirs.",
   },
 ];
 
 const faqs = [
   [
     "Quel pain livrez-vous ?",
-    "Nous livrons exclusivement du pain Saker frais.",
+    "Uniquement du pain Saker, acheté frais le jour même et emballé commande par commande.",
   ],
   [
-    "Combien coûte la livraison ?",
-    "Le service de conciergerie Pain Opiol coûte 500 FCFA par commande (livraison directe à votre domicile).",
+    "Combien ça coûte ?",
+    `Le pain reste à ${BREAD_PRICE} F, son prix normal chez Saker. On ajoute ${SERVICE_FEE} F de livraison par commande, que vous preniez 2 pains ou 15.`,
   ],
   [
-    "Combien coûte un pain ?",
-    "Un pain Saker est vendu à son prix officiel de 150 FCFA.",
+    "Jusqu’à quelle heure je peux commander ?",
+    "Envoyez votre commande avant 18 h pour être livré le soir même.",
   ],
   [
-    "Quand dois-je commander ?",
-    "Votre commande doit être passée avant 18 h pour une livraison garantie le soir même.",
+    "À quelle heure vous livrez ?",
+    "Entre 18 h et 21 h. On vous prévient dès que le livreur est en route.",
   ],
   [
-    "À quelle heure livrez-vous ?",
-    "Les livraisons sont effectuées le soir entre 18 h et 21 h. Vous recevez une confirmation dès que votre livreur est en route.",
+    "Vous livrez dans mon quartier ?",
+    `On livre partout où au moins ${HOUSEHOLDS_PER_ZONE} foyers du même quartier ou de la même résidence se sont inscrits. On a commencé à Logpom. Votre quartier n’est pas encore ouvert ? Inscrivez votre foyer et invitez vos voisins : dès ${HOUSEHOLDS_PER_ZONE} foyers, la tournée démarre.`,
   ],
   [
-    "Dans quels quartiers livrez-vous ?",
-    "Nous livrons dans les résidences et quartiers de Douala. Il suffit que 5 foyers voisins ou d'une même résidence commandent chez nous pour qu'une tournée dédiée soit organisée.",
+    "Je n’ai pas d’adresse précise, c’est grave ?",
+    "Pas du tout. Donnez-nous un repère (une pharmacie, une église, la couleur du portail) et le livreur vous appelle en arrivant.",
   ],
   [
-    "Puis-je commander pour une boutique ?",
-    "Non. Pain Opiol est un service personnalisé réservé exclusivement aux foyers et particuliers.",
+    "Je peux commander pour ma boutique ?",
+    "Non. Pain Opiol livre uniquement les familles et les particuliers.",
   ],
   [
-    "Comment payer ?",
-    "Le paiement se fait directement à la livraison, en espèces ou via Mobile Money.",
+    "Comment je paie ?",
+    "À la livraison, en espèces ou par Mobile Money.",
   ],
 ];
 
-function Logo({ compact = false }: { compact?: boolean }) {
+function Logo({ variant = "wide" }: { variant?: "wide" | "square" }) {
+  const wide = variant === "wide";
   return (
     <a
       href="#accueil"
-      aria-label="Pain Opiol — retour à l’accueil"
-      className="inline-flex shrink-0 items-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-600"
+      aria-label="Pain Opiol, retour en haut de la page"
+      className="inline-flex shrink-0 items-center rounded-lg focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-croute"
     >
       <Image
-        src="/pain-opiol-logo.jpg"
-        width={compact ? 176 : 200}
-        height={compact ? 80 : 78}
-        priority={compact}
+        src={wide ? "/pain-opiol-logo-wide.png" : "/pain-opiol-logo.jpg"}
+        width={wide ? 1076 : 720}
+        height={wide ? 240 : 720}
+        priority={wide}
         unoptimized
-        alt="Pain Opiol, livraison de pain Saker à domicile"
-        className={compact ? "h-16 w-auto lg:h-20" : "h-20 w-auto"}
+        alt="Pain Opiol"
+        className={wide ? "h-11 w-auto sm:h-13" : "h-24 w-auto"}
       />
     </a>
   );
@@ -85,19 +107,19 @@ function Logo({ compact = false }: { compact?: boolean }) {
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-orange-100/80 bg-[#fffdf8]/95 backdrop-blur-md">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-24 lg:px-8">
-        <Logo compact />
+    <header className="sticky top-0 z-50 border-b border-cacao/10 bg-white/95 backdrop-blur">
+      <div className="mx-auto flex h-18 max-w-6xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
+        <Logo />
 
         <nav
           aria-label="Navigation principale"
-          className="hidden items-center gap-6 lg:flex"
+          className="hidden items-center gap-7 lg:flex"
         >
           {navigation.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="rounded text-sm font-semibold text-stone-700 transition hover:text-orange-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-600"
+              className="rounded font-semibold text-cacao/80 transition-colors hover:text-croute focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-croute"
             >
               {item.label}
             </a>
@@ -106,38 +128,26 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <WhatsAppButton
-            href={siteConfig.orderUrl}
-            className="hidden sm:inline-flex"
-          >
-            Commander
-          </WhatsAppButton>
+          <div className="hidden sm:block">
+            <WhatsAppButton href={siteConfig.orderUrl}>Commander</WhatsAppButton>
+          </div>
           <details className="mobile-menu relative">
-            <summary className="grid size-11 cursor-pointer list-none place-items-center rounded-full border border-orange-200 bg-white font-black text-stone-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
-              <span className="sr-only">Ouvrir le menu</span>
-              <span aria-hidden="true" className="text-xl leading-none">
-                ☰
-              </span>
+            <summary className="flex h-11 cursor-pointer list-none items-center rounded-xl border-2 border-cacao px-4 font-bold text-cacao focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-croute">
+              Menu
             </summary>
             <nav
               aria-label="Navigation mobile"
-              className="absolute right-0 top-14 w-[min(82vw,300px)] rounded-3xl border border-orange-100 bg-white p-3 shadow-xl"
+              className="absolute right-0 top-14 w-[min(84vw,300px)] rounded-2xl border border-cacao/10 bg-white p-2 shadow-[0_20px_50px_-20px_rgba(59,26,14,0.45)]"
             >
               {navigation.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="block rounded-2xl px-4 py-3 text-sm font-bold text-stone-800 hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-orange-600"
+                  className="block rounded-xl px-4 py-3 font-semibold text-cacao hover:bg-mie focus-visible:outline-3 focus-visible:outline-croute"
                 >
                   {item.label}
                 </a>
               ))}
-              <WhatsAppButton
-                href={siteConfig.orderUrl}
-                className="mt-2 w-full sm:hidden"
-              >
-                Commander
-              </WhatsAppButton>
             </nav>
           </details>
         </div>
@@ -146,89 +156,147 @@ export function Navbar() {
   );
 }
 
+type Bubble = {
+  from: "client" | "opiol";
+  text: string;
+  time: string;
+};
+
+const conversation: Bubble[] = [
+  {
+    from: "client",
+    text: "Bonsoir, 4 pains pour ce soir svp. Repère : après la pharmacie, portail bleu.",
+    time: "16:42",
+  },
+  {
+    from: "opiol",
+    text: "Bien reçu ! 4 pains Saker + livraison, ça fait 1 100 F. On passe entre 18 h et 21 h.",
+    time: "16:44",
+  },
+  {
+    from: "opiol",
+    text: "Bonsoir, le livreur est en route. Il arrive dans 10 minutes.",
+    time: "19:02",
+  },
+  { from: "client", text: "D’accord, merci. Je sors.", time: "19:03" },
+];
+
+function ChatMockup() {
+  return (
+    <div
+      role="img"
+      aria-label="Une commande de 4 pains passée sur WhatsApp, puis le message du livreur en route"
+      className="mx-auto w-full max-w-[22rem] lg:mx-0 lg:justify-self-end"
+    >
+      <div className="overflow-hidden rounded-[2rem] border-[6px] border-[#1e0d06] bg-[#efe4d3] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)]">
+        <div className="flex items-center gap-3 bg-[#1e0d06] px-4 pb-3 pt-4 text-white">
+          <Image
+            src="/pain-opiol-logo.jpg"
+            width={720}
+            height={720}
+            unoptimized
+            alt=""
+            className="size-10 rounded-full bg-white object-cover"
+          />
+          <div className="leading-tight">
+            <p className="font-bold">Pain Opiol</p>
+            <p className="text-xs text-white/60">en ligne</p>
+          </div>
+        </div>
+        <ol className="chat flex flex-col gap-2.5 px-3 py-5">
+          {conversation.map((bubble, index) => (
+            <li
+              key={bubble.time + index}
+              style={{ animationDelay: `${0.35 + index * 0.55}s` }}
+              className={`bubble max-w-[85%] rounded-2xl px-3.5 py-2 text-[0.92rem] leading-snug text-[#1b1b1b] shadow-sm ${
+                bubble.from === "client"
+                  ? "self-end rounded-br-md bg-[#d9fdd3]"
+                  : "self-start rounded-bl-md bg-white"
+              }`}
+            >
+              {bubble.text}
+              <span className="mt-0.5 block text-right text-[0.7rem] text-black/45">
+                {bubble.time}
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  );
+}
+
 export function HeroSection() {
   return (
-    <section
-      id="accueil"
-      className="relative isolate overflow-hidden bg-stone-950"
-    >
-      <HeroCarousel />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 z-10 bg-gradient-to-b from-stone-950/80 via-orange-950/70 to-stone-950/80"
-      />
-      <div className="relative z-20 mx-auto flex min-h-[calc(100svh-5rem)] max-w-7xl items-center justify-center px-4 py-16 sm:min-h-[680px] sm:px-6 sm:py-20 lg:min-h-[720px] lg:px-8 lg:py-24">
-        <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
-          <h1 className="text-[2.7rem] font-black leading-[1.03] tracking-[-0.05em] text-white drop-shadow-[0_4px_18px_rgba(28,25,23,0.45)] sm:text-6xl lg:text-[5.25rem]">
-            Votre <span className="text-orange-300">pain Saker</span>, livré
-            chez vous. <span className="text-orange-300">Votre temps</span>,
-            préservé.
+    <section id="accueil" className="relative overflow-hidden bg-cacao text-white">
+      <div className="mx-auto grid max-w-6xl items-center gap-14 px-4 pb-16 pt-12 sm:px-6 sm:pt-16 lg:grid-cols-[1.3fr_.7fr] lg:gap-12 lg:px-8 lg:pb-24 lg:pt-20">
+        <div>
+          <h1 className="font-display text-[2.6rem] font-extrabold leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[4.1rem]">
+            <span className="sm:block">Votre temps est </span>
+            <span className="sm:block">trop précieux </span>
+            <span className="sm:block">pour faire le rang.</span>
           </h1>
-          <p className="mt-7 max-w-2xl text-base leading-7 text-orange-50 sm:text-lg sm:leading-8">
-            Vous avez mieux à faire que la file d&apos;attente. Commandez votre
-            pain avant 18 h et Pain Opiol s&apos;occupe du reste.
+          <p className="mt-6 max-w-[34rem] text-lg leading-8 text-white/80">
+            Pain Opiol achète votre pain Saker, l’emballe avec soin et vous le
+            livre à domicile le soir même. Vous, vous profitez de votre soirée.
           </p>
-          <div className="mt-9 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <WhatsAppButton
               href={siteConfig.orderUrl}
-              className="w-full sm:w-auto sm:px-8 sm:py-4"
+              className="min-h-14 px-7 text-base"
             >
               Commander sur WhatsApp
             </WhatsAppButton>
             <a
-              href="#comment-ca-marche"
-              className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/70 bg-white/95 px-6 py-3 text-sm font-extrabold text-stone-800 transition hover:border-orange-300 hover:text-orange-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-300 sm:w-auto"
+              href="#tarif"
+              className="inline-flex min-h-14 items-center justify-center rounded-xl border-2 border-white/30 px-7 font-bold text-white transition-colors hover:border-soleil hover:text-soleil focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-soleil"
             >
-              Voir comment ça marche ↓
+              Calculer ma commande
             </a>
           </div>
-          <p className="mt-5 text-sm font-semibold text-orange-100">
-            Pain Saker à <strong className="text-white">150 F + 500 F</strong>{" "}
-            de service par commande.
+          <p className="mt-6 text-white/70">
+            Commandez avant 18&nbsp;h, livraison entre 18&nbsp;h et 21&nbsp;h.{" "}
+            <strong className="text-white">{BREAD_PRICE} F</strong> le pain +{" "}
+            <strong className="text-white">{SERVICE_FEE} F</strong> la
+            livraison.
           </p>
         </div>
+        <ChatMockup />
       </div>
     </section>
   );
 }
 
 export function ProblemSection() {
-  const points = [
-    "Plus de détour par la boulangerie après le travail",
-    "Plus d'attente inutile quand votre soirée vous attend",
-  ];
   return (
-    <section className="border-y border-orange-100 bg-orange-50/60 py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-12">
-          <div>
-            <p className="section-kicker">Pourquoi Pain Opiol ?</p>
-            <h2 className="section-title mt-3">
-              Votre temps vaut plus qu&apos;une file d&apos;attente.
-            </h2>
-            <p className="mt-5 max-w-xl leading-7 text-stone-600">
-              Vous gérez une famille, un travail, un quotidien chargé. Acheter
-              du pain ne devrait pas être une corvée de plus dans votre journée.
-            </p>
-          </div>
-          <div className="grid w-full gap-4">
-            {points.map((point) => (
-              <div
-                key={point}
-                className="card-hover flex items-center gap-4 rounded-3xl border border-orange-100 bg-white p-5 shadow-[0_12px_35px_rgba(120,53,15,0.06)] sm:p-6"
-              >
-                <span
-                  aria-hidden="true"
-                  className="grid size-10 shrink-0 place-items-center rounded-full bg-red-50 text-xl font-black text-red-600"
-                >
-                  ✕
-                </span>
-                <p className="font-extrabold leading-6 text-stone-900">
-                  {point}
-                </p>
-              </div>
-            ))}
-          </div>
+    <section className="py-20 sm:py-28">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.25fr_1fr] lg:gap-14 lg:px-8">
+        <figure className="relative">
+          <Image
+            src="/hero-family-breakfast.jpg"
+            width={1800}
+            height={1201}
+            unoptimized
+            alt="Une famille prépare des tartines dans la cuisine"
+            className="aspect-[3/2] w-full rounded-3xl object-cover"
+          />
+          <figcaption className="absolute bottom-4 left-4 rounded-lg bg-white/90 px-3 py-1.5 text-sm font-semibold text-cacao backdrop-blur">
+            Le pain vient à vous, pas l’inverse.
+          </figcaption>
+        </figure>
+        <div>
+          <h2 className="section-title">
+            18 h 30, le rang chez Saker. On connaît.
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-cacao/80">
+            Vous sortez du travail, il y a la circulation, et au bout il faut
+            encore attendre pour quelques baguettes. Et demain matin, il faut du
+            pain pour le petit-déjeuner des enfants.
+          </p>
+          <p className="mt-4 text-lg leading-8 text-cacao/80">
+            Avec Pain Opiol, vous rentrez directement. On fait le déplacement
+            pour vous et votre pain arrive chez vous, bien emballé.
+          </p>
         </div>
       </div>
     </section>
@@ -237,36 +305,25 @@ export function ProblemSection() {
 
 export function HowItWorksSection() {
   return (
-    <section id="comment-ca-marche" className="scroll-mt-24 py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl">
-          <p className="section-kicker">Comment ça marche</p>
-          <h2 className="section-title mt-3">
-            Commander votre pain n’a jamais été aussi simple.
-          </h2>
-        </div>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {steps.map((step) => (
-            <article
-              key={step.number}
-              className="card-hover relative overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white p-6 sm:p-8"
-            >
-              <span className="absolute right-5 top-3 text-6xl font-black tracking-tighter text-orange-100">
-                {step.number}
-              </span>
-              <h3 className="relative mt-10 pr-14 text-xl font-black text-stone-950">
-                {step.title}
-              </h3>
-              <p className="relative mt-3 leading-7 text-stone-600">
-                {step.text}
+    <section
+      id="comment-ca-marche"
+      className="scroll-mt-20 border-t border-cacao/10 py-20 sm:py-28"
+    >
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <h2 className="section-title max-w-2xl">
+          Votre soirée avec Pain Opiol.
+        </h2>
+        <ol className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+          {evening.map((step) => (
+            <li key={step.time} className="border-t-2 border-cacao pt-6">
+              <p className="font-display text-3xl font-extrabold text-croute sm:text-4xl">
+                {step.time}
               </p>
-            </article>
+              <h3 className="mt-3 text-xl font-bold text-cacao">{step.title}</h3>
+              <p className="mt-2 leading-7 text-cacao/75">{step.text}</p>
+            </li>
           ))}
-        </div>
-        <p className="mt-6 text-center text-sm font-semibold text-stone-500">
-          Commandez avant 18 h · Livraison entre 18 h et 21 h · Paiement à la
-          livraison
-        </p>
+        </ol>
       </div>
     </section>
   );
@@ -274,72 +331,23 @@ export function HowItWorksSection() {
 
 export function PricingSection() {
   return (
-    <section
-      id="tarif"
-      className="scroll-mt-24 bg-stone-950 py-20 text-white sm:py-28"
-    >
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-center lg:px-8">
+    <section id="tarif" className="scroll-mt-20 bg-mie py-20 sm:py-28">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_minmax(0,26rem)] lg:gap-20 lg:px-8">
         <div>
-          <p className="section-kicker text-orange-400">Tarif transparent</p>
-          <h2 className="section-title mt-3 !text-white">
-            Un prix juste pour votre tranquillité.
+          <h2 className="section-title">
+            Le pain au prix Saker. La livraison à {SERVICE_FEE} F.
           </h2>
-          <p className="mt-5 max-w-lg leading-7 text-stone-300">
-            Vous payez le prix officiel de votre pain Saker et 500 F de frais de
-            service pour toute la commande, peu importe le nombre de pains.
+          <p className="mt-6 max-w-xl text-lg leading-8 text-cacao/80">
+            Un pain coûte {BREAD_PRICE} F, exactement comme à la boulangerie. On
+            ajoute {SERVICE_FEE} F par commande pour la course et l’emballage,
+            que vous preniez 2 pains ou 15.
           </p>
-          <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-stone-700 px-4 py-2 text-sm font-bold text-stone-200">
-            <span className="size-2 rounded-full bg-emerald-400" /> Paiement à
-            la livraison
-          </div>
+          <p className="mt-6 max-w-xl leading-7 text-cacao/70">
+            Rien à payer à l’avance : vous réglez au livreur, en espèces ou par
+            Mobile Money.
+          </p>
         </div>
-        <div className="overflow-hidden rounded-[2rem] bg-[#fffaf0] p-5 text-stone-950 sm:p-8">
-          <div className="grid gap-4 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
-            <div className="rounded-3xl bg-white p-5">
-              <p className="text-sm font-bold text-stone-500">Pain Saker</p>
-              <p className="mt-2 text-3xl font-black text-orange-700">
-                150 <span className="text-base">FCFA</span>
-              </p>
-              <p className="mt-1 text-sm text-stone-500">par pain</p>
-            </div>
-            <span className="text-center text-3xl font-light text-orange-500">
-              +
-            </span>
-            <div className="rounded-3xl bg-white p-5">
-              <p className="text-sm font-bold text-stone-500">
-                Service Pain Opiol
-              </p>
-              <p className="mt-2 text-3xl font-black text-orange-700">
-                500 <span className="text-base">FCFA</span>
-              </p>
-              <p className="mt-1 text-sm text-stone-500">par commande</p>
-            </div>
-          </div>
-          <div className="mt-5 rounded-3xl bg-orange-600 p-5 text-white sm:p-6">
-            <div className="flex items-center justify-between gap-3 border-b border-orange-400 pb-4">
-              <p className="font-extrabold">
-                Exemple : 3 pains livrés chez vous
-              </p>
-              <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-black">
-                UNE COMMANDE
-              </span>
-            </div>
-            <dl className="mt-4 space-y-3 text-sm">
-              <div className="flex justify-between">
-                <dt>3 × 150 F</dt>
-                <dd className="font-bold">450 F</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt>Service Pain Opiol</dt>
-                <dd className="font-bold">500 F</dd>
-              </div>
-              <div className="flex justify-between border-t border-orange-400 pt-4 text-lg">
-                <dt className="font-black">Total</dt>
-                <dd className="font-black">950 FCFA</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
+        <PriceCalculator />
       </div>
     </section>
   );
@@ -347,57 +355,59 @@ export function PricingSection() {
 
 export function CoverageSection() {
   return (
-    <section id="zone" className="scroll-mt-24 py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2rem] bg-orange-50 p-6 sm:p-10 lg:p-14">
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-24 -right-24 size-72 rounded-full border-[40px] border-orange-100"
-          />
-          <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
-            <div className="max-w-2xl">
-              <h2 className="section-title">Nous commençons par Logpom.</h2>
-              <p className="mt-5 leading-7 text-stone-600">
-                Pour bien démarrer et vous servir correctement, Pain Opiol livre
-                pour le moment à Logpom et dans les environs proches. Douala est
-                grande, donc nous avançons quartier par quartier afin de garder
-                des livraisons simples, rapides et bien organisées.
-              </p>
-              <p className="mt-4 leading-7 text-stone-600">
-                Avec le temps, nous ouvrirons progressivement d&apos;autres zones.
-                Même pour une grosse commande, nous préférons rester sérieux sur
-                notre zone actuelle plutôt que de promettre tout Douala trop
-                vite.
-              </p>
-            </div>
-            <WhatsAppButton
-              href={siteConfig.coverageUrl}
-              variant="outline"
-              className="relative w-full lg:w-auto"
-            >
-              Commander pour ma résidence
+    <section id="quartiers" className="scroll-mt-20 py-20 sm:py-28">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 lg:px-8">
+        <div>
+          <h2 className="section-title">
+            {HOUSEHOLDS_PER_ZONE} foyers dans votre quartier ? On vient livrer.
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-cacao/80">
+            Pain Opiol fonctionne par tournées de quartier. Dès que{" "}
+            {HOUSEHOLDS_PER_ZONE} foyers d’un même quartier ou d’une même
+            résidence s’inscrivent, on ouvre une tournée chez vous, tous les
+            soirs.
+          </p>
+          <p className="mt-4 text-lg leading-8 text-cacao/80">
+            On a commencé à Logpom. Chaque nouveau groupe de{" "}
+            {HOUSEHOLDS_PER_ZONE} foyers ouvre un nouveau quartier, n’importe où
+            à Douala.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <WhatsAppButton href={siteConfig.joinUrl}>
+              Inscrire mon foyer
+            </WhatsAppButton>
+            <WhatsAppButton href={siteConfig.shareUrl} variant="outline">
+              Partager à mes voisins
             </WhatsAppButton>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
 
-export function SocialProofSection() {
-  return (
-    <section className="py-20 sm:py-24">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-[2rem] border border-orange-100 bg-white p-6 shadow-[0_24px_70px_rgba(120,53,15,0.08)] sm:p-10">
-          <div>
-            <p className="section-kicker">Testé sur le terrain</p>
-            <h2 className="mt-3 text-2xl font-black tracking-tight text-stone-950 sm:text-3xl">
-              Déjà testé et adopté auprès de nombreuses familles.
-            </h2>
-            <p className="mt-4 leading-7 text-stone-600">
-              Plusieurs foyers font déjà confiance à Pain Opiol pour recevoir
-              leur pain Saker chaque soir directement à domicile, sans
-              contrainte et en toute sérénité.
+        <div className="rounded-3xl bg-cacao p-7 text-white sm:p-9">
+          <h3 className="font-display text-2xl font-bold">
+            Ouvrir votre quartier en 3 étapes
+          </h3>
+          <ol className="mt-7 space-y-6">
+            {openingSteps.map((step, index) => (
+              <li key={step.title} className="grid grid-cols-[2.25rem_1fr] gap-4">
+                <span className="grid size-9 place-items-center rounded-full bg-soleil font-display font-extrabold text-cacao">
+                  {index + 1}
+                </span>
+                <div>
+                  <p className="font-bold">{step.title}</p>
+                  <p className="mt-1 leading-6 text-white/70">{step.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-8 border-t border-white/15 pt-6">
+            <div aria-hidden="true" className="flex gap-1.5">
+              {Array.from({ length: HOUSEHOLDS_PER_ZONE }, (_, i) => (
+                <span key={i} className="h-2.5 flex-1 rounded-full bg-soleil" />
+              ))}
+            </div>
+            <p className="mt-3 text-sm text-white/70">
+              {HOUSEHOLDS_PER_ZONE} foyers inscrits = une tournée ouverte chaque
+              soir dans votre quartier.
             </p>
           </div>
         </div>
@@ -406,68 +416,43 @@ export function SocialProofSection() {
   );
 }
 
-export function CTASection() {
-  return (
-    <section className="px-4 py-8 sm:px-6 sm:py-14 lg:px-8">
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-orange-600 px-6 py-12 text-center text-white sm:px-10 sm:py-16">
-        <p className="text-sm font-black uppercase tracking-[0.16em] text-orange-100">
-          Votre pain, sans stresse
-        </p>
-        <h2 className="mx-auto mt-4 text-3xl font-black tracking-tight sm:text-5xl lg:whitespace-nowrap">
-          Et si ce soir, vous ne faisiez pas la file ?
-        </h2>
-        <p className="mx-auto mt-5 max-w-3xl leading-7 text-orange-50 lg:whitespace-nowrap">
-          Envoyez simplement votre commande à Pain Opiol. Nous nous occupons du
-          reste.
-        </p>
-        <WhatsAppButton
-          href={siteConfig.orderUrl}
-          variant="light"
-          className="mt-8 w-full sm:w-auto sm:px-8 sm:py-4"
-        >
-          Commander maintenant
-        </WhatsAppButton>
-      </div>
-    </section>
-  );
-}
-
 export function FAQSection() {
   return (
-    <section id="faq" className="scroll-mt-24 py-20 sm:py-28">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[.75fr_1.25fr] lg:px-8">
+    <section
+      id="faq"
+      className="scroll-mt-20 border-t border-cacao/10 py-20 sm:py-28"
+    >
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[.8fr_1.2fr] lg:gap-16 lg:px-8">
         <div>
-          <p className="section-kicker">Questions fréquentes</p>
-          <h2 className="section-title mt-3">
-            Une question ? Voici l’essentiel.
-          </h2>
-          <p className="mt-5 leading-7 text-stone-600">
-            Besoin d’une précision sur votre quartier ou votre commande ?
-            Écrivez-nous directement.
+          <h2 className="section-title">Vos questions.</h2>
+          <p className="mt-6 text-lg leading-8 text-cacao/80">
+            Vous ne trouvez pas la réponse ? Écrivez-nous directement, on répond
+            vite.
           </p>
           <WhatsAppButton
             href={siteConfig.orderUrl}
             variant="outline"
-            className="mt-6 w-full sm:w-auto"
+            className="mt-7 w-full sm:w-auto"
           >
-            Nous écrire sur WhatsApp
+            Poser ma question sur WhatsApp
           </WhatsAppButton>
         </div>
-        <div className="divide-y divide-stone-200 border-y border-stone-200">
+        <div className="border-t-2 border-cacao">
           {faqs.map(([question, answer]) => (
-            <details key={question} className="faq-item group py-1">
-              <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 rounded-xl px-2 py-4 font-extrabold text-stone-900 focus-visible:outline-2 focus-visible:outline-orange-600">
+            <details
+              key={question}
+              className="faq-item group border-b border-cacao/15"
+            >
+              <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-4 text-lg font-bold text-cacao focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-croute">
                 {question}
                 <span
                   aria-hidden="true"
-                  className="grid size-8 shrink-0 place-items-center rounded-full bg-orange-50 text-xl text-orange-700 transition group-open:rotate-45"
+                  className="text-2xl font-normal leading-none text-croute transition-transform group-open:rotate-45"
                 >
                   +
                 </span>
               </summary>
-              <p className="px-2 pb-5 pr-12 leading-7 text-stone-600">
-                {answer}
-              </p>
+              <p className="pb-6 pr-10 leading-7 text-cacao/80">{answer}</p>
             </details>
           ))}
         </div>
@@ -476,42 +461,70 @@ export function FAQSection() {
   );
 }
 
-export function Footer() {
+export function CTASection() {
   return (
-    <footer className="border-t border-orange-100 bg-[#fffaf0] pb-24 pt-12 sm:pb-10">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 md:grid-cols-[1fr_auto] md:items-end lg:px-8">
+    <section className="bg-feuille text-white">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-16 sm:px-6 sm:py-20 lg:flex-row lg:items-center lg:justify-between lg:px-8">
         <div>
-          <Logo />
-          <p className="mt-3 text-sm font-semibold text-stone-700">
-            Livraison de pain Saker à domicile.
+          <h2 className="font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.03em] sm:text-5xl">
+            Ce soir, laissez le rang aux autres.
+          </h2>
+          <p className="mt-4 text-lg text-white/85">
+            Commandez avant 18 h sur WhatsApp au{" "}
+            <span className="whitespace-nowrap font-bold text-white">
+              {PAIN_OPIOL_PHONE_DISPLAY}
+            </span>
+            .
           </p>
         </div>
-        <div>
+        <WhatsAppButton
+          href={siteConfig.orderUrl}
+          variant="light"
+          className="min-h-14 w-full shrink-0 px-8 text-base sm:w-auto"
+        >
+          Commander maintenant
+        </WhatsAppButton>
+      </div>
+    </section>
+  );
+}
+
+export function Footer() {
+  return (
+    <footer className="bg-white pb-28 pt-12 sm:pb-12">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 md:grid-cols-[1fr_auto] md:items-center lg:px-8">
+        <div className="flex items-center gap-4">
+          <Logo variant="square" />
+          <div className="text-sm leading-6 text-cacao/75">
+            <p>Livraison de pain Saker à domicile, à Douala.</p>
+            <p>
+              Nouveau quartier dès {HOUSEHOLDS_PER_ZONE} foyers inscrits.
+            </p>
+            <p>
+              WhatsApp :{" "}
+              <a
+                href={siteConfig.orderUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold text-cacao hover:text-croute"
+              >
+                {PAIN_OPIOL_PHONE_DISPLAY}
+              </a>
+            </p>
+          </div>
+        </div>
+        <div className="md:text-right">
           <nav
             aria-label="Navigation de pied de page"
-            className="flex flex-wrap gap-x-5 gap-y-3 text-sm font-bold text-stone-700"
+            className="flex flex-wrap gap-x-6 gap-y-2 font-semibold text-cacao/80 md:justify-end"
           >
-            <a href="#comment-ca-marche" className="hover:text-orange-700">
-              Comment ça marche
-            </a>
-            <a href="#tarif" className="hover:text-orange-700">
-              Tarif
-            </a>
-            <a href="#faq" className="hover:text-orange-700">
-              FAQ
-            </a>
-            <a
-              href={siteConfig.orderUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="text-orange-700"
-            >
-              WhatsApp
-            </a>
+            {navigation.map((item) => (
+              <a key={item.href} href={item.href} className="hover:text-croute">
+                {item.label}
+              </a>
+            ))}
           </nav>
-          <p className="mt-5 text-sm text-stone-500 md:text-right">
-            © 2026 Pain Opiol
-          </p>
+          <p className="mt-4 text-sm text-cacao/55">© 2026 Pain Opiol</p>
         </div>
       </div>
     </footer>
@@ -523,7 +536,7 @@ export function MobileWhatsAppBar() {
     <div className="fixed inset-x-3 bottom-3 z-40 sm:hidden">
       <WhatsAppButton
         href={siteConfig.orderUrl}
-        className="w-full border-4 border-white shadow-2xl"
+        className="min-h-14 w-full text-base shadow-[0_12px_30px_-8px_rgba(0,0,0,0.45)]"
       >
         Commander sur WhatsApp
       </WhatsAppButton>
