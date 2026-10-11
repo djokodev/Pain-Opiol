@@ -4,7 +4,7 @@ export const PAIN_OPIOL_PHONE_DISPLAY = "+237 691 25 79 46";
 
 // Adresse publique du site (sert aux aperçus WhatsApp/Facebook et au lien partagé).
 // À changer si le site est servi sur un autre domaine.
-export const SITE_URL = "https://pain-opiol.vercel.app";
+export const SITE_URL = "https://painopiol.vercel.app";
 
 export const BREAD_PRICE = 150;
 export const SERVICE_FEE = 500;

@@ -12,7 +12,7 @@ async function renderPage(pathname) {
   const { default: worker } = await import(workerUrl.href);
 
   const response = await worker.fetch(
-    new Request(`https://pain-opiol.vercel.app${pathname}`, {
+    new Request(`https://painopiol.vercel.app${pathname}`, {
       headers: { accept: "text/html" },
     }),
     {
